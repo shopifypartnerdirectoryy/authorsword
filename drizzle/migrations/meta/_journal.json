@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1795365592237,
+      "tag": "0000_author_word_core",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1795365602148,
+      "tag": "0001_book_covers_policies",
+      "breakpoints": true
+    }
+  ]
+}
