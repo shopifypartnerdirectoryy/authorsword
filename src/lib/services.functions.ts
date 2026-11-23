@@ -6,8 +6,9 @@ export type ServiceOverride = { price_label: string | null; summary: string | nu
 export const getServiceOverrides = createServerFn({ method: "GET" }).handler(
   async (): Promise<Record<string, ServiceOverride>> => {
     try {
-      const { getPublicClient } = await import("./public-client.server");
-      const { data, error } = await getPublicClient()
+      // Table is admin-only under RLS; expose just the public display columns here.
+      const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+      const { data, error } = await supabaseAdmin
         .from("service_overrides")
         .select("slug, price_label, summary");
       if (error) throw error;

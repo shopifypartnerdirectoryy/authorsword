@@ -1,4 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
+import { z } from "zod";
 import {
   bookSubmissionSchema,
   consultationSchema,
@@ -62,4 +63,21 @@ export const sendContactMessage = createServerFn({ method: "POST" })
       return { ok: false, error: FAIL };
     }
     return { ok: true };
+  });
+
+const coverUploadSchema = z.object({ contentType: z.enum(["image/jpeg", "image/png", "image/webp"]) });
+
+/** Issues a one-time signed upload link for a single new cover file; anonymous direct uploads are not allowed. */
+export const createCoverUpload = createServerFn({ method: "POST" })
+  .inputValidator((input: unknown) => coverUploadSchema.parse(input))
+  .handler(async ({ data }): Promise<{ ok: true; path: string; token: string } | { ok: false; error: string }> => {
+    const ext = data.contentType === "image/png" ? "png" : data.contentType === "image/webp" ? "webp" : "jpg";
+    const path = `submissions/${crypto.randomUUID()}.${ext}`;
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data: signed, error } = await supabaseAdmin.storage.from("book-covers").createSignedUploadUrl(path);
+    if (error || !signed) {
+      console.error("createCoverUpload failed", error);
+      return { ok: false, error: "Your cover couldn't be uploaded. Please try again, or submit without it." };
+    }
+    return { ok: true, path: signed.path, token: signed.token };
   });

@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ConsentField, Field, SuccessPanel, flattenErrors, inputCls, textareaCls } from "@/components/site/form-bits";
 import { FORM_SERVICES, type FormService } from "@/data/services";
 import { bookSubmissionSchema } from "@/lib/form-schemas";
-import { submitBook } from "@/lib/forms.functions";
+import { createCoverUpload, submitBook } from "@/lib/forms.functions";
 import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
 
@@ -36,6 +36,7 @@ export function SubmitBookForm({ initialService }: { initialService?: FormServic
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
   const send = useServerFn(submitBook);
+  const getUpload = useServerFn(createCoverUpload);
 
   const set = (k: keyof typeof v) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setV((p) => ({ ...p, [k]: e.target.value }));
@@ -73,18 +74,17 @@ export function SubmitBookForm({ initialService }: { initialService?: FormServic
     try {
       let cover_path: string | undefined;
       if (cover) {
-        const ext = cover.type === "image/png" ? "png" : cover.type === "image/webp" ? "webp" : "jpg";
-        const path = `submissions/${crypto.randomUUID()}.${ext}`;
-        const { error: upErr } = await supabase.storage.from("book-covers").upload(path, cover, {
-          contentType: cover.type,
-          upsert: false,
-        });
-        if (upErr) {
+        const slot = await getUpload({ data: { contentType: cover.type as "image/jpeg" | "image/png" | "image/webp" } });
+        const upErr = slot.ok
+          ? (await supabase.storage.from("book-covers").uploadToSignedUrl(slot.path, slot.token, cover, { contentType: cover.type })).error
+          : new Error(slot.error);
+        if (upErr || !slot.ok) {
           console.error(upErr);
           toast.error("Your cover couldn't be uploaded. Please try again, or submit without it.");
           setBusy(false);
           return;
         }
+        const path = slot.path;
         cover_path = path;
       }
       const res = await send({ data: { ...pre.data, ...(cover_path ? { cover_path } : {}) } });

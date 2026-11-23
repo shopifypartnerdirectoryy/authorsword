@@ -15,6 +15,13 @@
       "when": 1795365602148,
       "tag": "0001_book_covers_policies",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1795445409868,
+      "tag": "0002_lock_overrides_and_cover_uploads",
+      "breakpoints": true
     }
   ]
 }
