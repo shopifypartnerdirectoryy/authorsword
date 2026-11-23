@@ -45,9 +45,9 @@ function HomePage() {
         <img
           src={heroImg}
           alt="An open book glowing with golden light beside a stack of hardcover books"
-          className="absolute inset-0 h-full w-full object-cover object-[65%_center] opacity-70"
+          className="absolute inset-0 h-full w-full object-cover object-[70%_center] opacity-90"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-ink/10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/60 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink to-transparent" />
         <div className="container-page relative flex min-h-[calc(100svh-5rem)] items-center py-20">
           <div className="max-w-3xl animate-rise">

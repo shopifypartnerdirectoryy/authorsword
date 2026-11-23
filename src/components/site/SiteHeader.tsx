@@ -14,7 +14,7 @@ import { Logo } from "./Logo";
 import { MAIN_NAV, SERVICE_MENU } from "./nav-data";
 
 const linkCls =
-  "px-3 py-2 text-[0.82rem] uppercase tracking-[0.18em] text-ivory/80 transition-colors hover:text-gold-bright data-[status=active]:text-gold";
+  "whitespace-nowrap px-2.5 py-2 text-[0.78rem] uppercase tracking-[0.14em] text-ivory/80 transition-colors hover:text-gold-bright data-[status=active]:text-gold";
 
 function ServiceLink({ slug, label, onClick }: { slug: string; label: string; onClick?: () => void }) {
   if (slug === "book-to-film") {
@@ -41,8 +41,8 @@ export function SiteHeader() {
   const close = () => setOpen(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line-dark bg-ink/95 backdrop-blur supports-[backdrop-filter]:bg-ink/85">
-      <div className="container-page flex h-20 items-center justify-between gap-6">
+    <header className="sticky top-0 z-50 border-b border-line-dark bg-ink">
+      <div className="container-page flex h-20 items-center justify-between gap-4">
         <Link to="/" aria-label="Author's Word home" className="shrink-0">
           <Logo />
         </Link>
@@ -52,10 +52,10 @@ export function SiteHeader() {
             {MAIN_NAV.map((item) =>
               item.to === "/services" ? (
                 <NavigationMenuItem key={item.to}>
-                  <NavigationMenuTrigger className="h-auto bg-transparent px-3 py-2 text-[0.82rem] font-normal uppercase tracking-[0.18em] text-ivory/80 hover:bg-transparent hover:text-gold-bright focus:bg-transparent data-[state=open]:bg-transparent data-[state=open]:text-gold">
+                  <NavigationMenuTrigger className="h-auto whitespace-nowrap bg-transparent px-2.5 py-2 text-[0.78rem] font-normal uppercase tracking-[0.14em] text-ivory/80 hover:bg-transparent hover:text-gold-bright focus:bg-transparent focus:text-gold-bright data-[state=open]:bg-transparent data-[state=open]:text-gold data-[state=open]:hover:bg-transparent data-[state=open]:focus:bg-transparent">
                     Services
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="w-[54rem] bg-ink p-8 text-ivory">
+                  <NavigationMenuContent className="w-[54rem] bg-ink p-8 text-ivory md:w-[54rem]">
                     <div className="grid grid-cols-4 gap-8">
                       {SERVICE_MENU.map((group) => (
                         <div key={group.heading}>
