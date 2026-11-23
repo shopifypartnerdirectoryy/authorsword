@@ -28,3 +28,11 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- Service catalogue and prices live in `src/data/services.ts` as the single source of truth; `src/test/pricing.test.ts` locks the published prices. Why: prices must match the business brief exactly.
+- Admin-editable price labels/summaries are stored in the `service_overrides` table and merged over the catalogue via `applyOverride`. Why: lets the owner adjust displayed prices without code changes.
+- Public forms post through `createServerFn` handlers in `src/lib/forms.functions.ts` (zod-validated) using an anonymous publishable client; RLS allows anonymous inserts only. Why: server-side validation without exposing read access.
+- Admin access comes from `public.user_roles`; a trigger on `auth.users` grants `admin` to the official business email once confirmed. Admin pages live under `src/routes/_authenticated/`. Why: roles must never be client-controlled.
+- Social profile URLs live in `src/data/social.ts`; empty URLs hide their icon. Why: no invented social accounts.
