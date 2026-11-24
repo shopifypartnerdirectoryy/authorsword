@@ -26,8 +26,10 @@ export type Database = {
           created_at: string
           email: string
           genre: string
+          goodreads_link: string | null
           id: string
           privacy_consent: boolean
+          project_objectives: string | null
           services: string[]
           social_links: string | null
           status: string
@@ -44,8 +46,10 @@ export type Database = {
           created_at?: string
           email: string
           genre: string
+          goodreads_link?: string | null
           id?: string
           privacy_consent: boolean
+          project_objectives?: string | null
           services?: string[]
           social_links?: string | null
           status?: string
@@ -62,8 +66,10 @@ export type Database = {
           created_at?: string
           email?: string
           genre?: string
+          goodreads_link?: string | null
           id?: string
           privacy_consent?: boolean
+          project_objectives?: string | null
           services?: string[]
           social_links?: string | null
           status?: string
