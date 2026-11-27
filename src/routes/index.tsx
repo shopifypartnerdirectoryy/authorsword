@@ -53,13 +53,13 @@ function HomePage() {
           <div className="max-w-3xl animate-rise">
             <p className="eyebrow">Author&rsquo;s Word · Heard &amp; Lifted</p>
             <h1 className="mt-6 text-5xl leading-[1.02] text-ivory sm:text-6xl lg:text-[5.25rem]">
-              Your Story Deserves to Be Heard.{" "}
-              <em className="text-gold-gradient font-normal">Your Book Deserves to Be Discovered.</em>
+              Your Story Deserves to Be Seen.{" "}
+              <em className="text-gold-gradient font-normal">Let's Help the Right Readers Discover It.</em>
             </h1>
             <p className="mt-8 max-w-xl text-lg text-ivory/75">
-              You have already done the hard work of bringing your story to life. Let Author&rsquo;s Word help more
-              readers discover it through thoughtful book promotion, creative marketing, author branding and
-              visibility-building services.
+              From cinematic book trailers and Goodreads discovery to Amazon optimization, author branding and AI
+              search visibility, Author&rsquo;s Word helps authors build a stronger presence and connect their stories
+              with more readers.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <Button asChild variant="gold" size="lg">
@@ -190,6 +190,37 @@ function HomePage() {
                 </Link>
               </Button>
             </div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* Original creative portfolio */}
+      <section className="bg-cream">
+        <div className="container-page py-24 md:py-32">
+          <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+            <SectionHeading
+              eyebrow="Our creative work"
+              title="Stories deserve to be seen — and felt."
+              intro="Explore original cinematic book trailers and 3D book mockups created to give books a distinctive visual presence."
+            />
+            <Button asChild variant="inkOutline" size="lg" className="shrink-0">
+              <Link to="/portfolio">Explore the portfolio <ArrowRight /></Link>
+            </Button>
+          </div>
+          <div className="mt-14 grid gap-5 md:grid-cols-3">
+            <Link to="/portfolio" className="group block overflow-hidden rounded-sm bg-ink">
+              <img src="/__l5e/assets-v1/406db630-b21b-4fa2-b0a3-c5056890cbb5/cinematic-book-trailer-01-poster.jpg" alt="Cinematic book trailer portfolio preview" loading="lazy" className="aspect-video w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+              <p className="p-4 text-sm text-ivory">Cinematic Book Trailers <span className="text-gold">— 7 films</span></p>
+            </Link>
+            <Link to="/portfolio" className="group block overflow-hidden rounded-sm bg-cream">
+              <img src="/__l5e/assets-v1/d5bc346d-a0ab-4352-b65a-e07591272928/a-thousand-little-cuts-3d-book-mockup.webp" alt="A Thousand Little Cuts 3D book mockup" loading="lazy" className="aspect-video w-full object-contain p-5 transition-transform duration-500 group-hover:scale-[1.03]" />
+              <p className="p-4 text-sm text-ink">3D Book Mockups <span className="text-gold">— 3 designs</span></p>
+            </Link>
+            <Link to="/portfolio" className="group block overflow-hidden rounded-sm bg-cream">
+              <img src="/__l5e/assets-v1/66ff09c5-3829-47fc-8525-5fd4ba2d477c/nobel-pursuits-3d-book-mockup.webp" alt="Nobel Pursuits 3D book mockup" loading="lazy" className="aspect-video w-full object-contain p-5 transition-transform duration-500 group-hover:scale-[1.03]" />
+              <p className="p-4 text-sm text-ink">Original Creative Assets <span className="text-gold">— view all</span></p>
+            </Link>
           </div>
         </div>
       </section>
