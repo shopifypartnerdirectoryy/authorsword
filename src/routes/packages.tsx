@@ -11,7 +11,7 @@ export const Route = createFileRoute("/packages")({
       {
         name: "description",
         content:
-          "The Debut Visibility Suite, The Bestseller Momentum Campaign and The Complete Author Brand & Launch — tailored proposals for coordinated book promotion.",
+          "The Debut Visibility Suite, The Reader Growth Campaign and The Complete Author Brand & Launch — tailored proposals for coordinated book promotion.",
       },
       { property: "og:title", content: "Author Promotion Packages — Author's Word" },
       {
@@ -36,7 +36,7 @@ const PACKAGES = [
     ],
   },
   {
-    name: "The Bestseller Momentum Campaign",
+    name: "The Reader Growth Campaign",
     intro: "A broader promotional package for authors seeking a coordinated visibility campaign.",
     items: [
       "30-second cinematic trailer",
