@@ -1,4 +1,4 @@
-export const FAQS: { q: string; a: string }[] = [] = [
+export const FAQS: { q: string; a: string }[] = [
   { q: "Who can work with Author's Word?", a: "Any author who wants their book to be seen by more readers — independent, self-published and traditionally published authors, across all genres, whether you have one book or a full catalogue." },
   { q: "Do you work with first-time authors?", a: "Yes. Debut authors are a big part of why Author's Word exists. We'll help you understand your options and choose the support that makes sense for your first release." },
   { q: "Do you support different book genres?", a: "Yes. We work with authors across all genres, from fiction and fantasy to memoir, non-fiction, poetry and children's books, and tailor our approach to each genre's readers." },

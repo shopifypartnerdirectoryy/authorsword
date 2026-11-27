@@ -14,7 +14,7 @@ import { Logo } from "./Logo";
 import { MAIN_NAV, SERVICE_MENU } from "./nav-data";
 
 const linkCls =
-  "whitespace-nowrap px-2.5 py-2 text-[0.78rem] uppercase tracking-[0.14em] text-ivory/80 transition-colors hover:text-gold-bright data-[status=active]:text-gold";
+  "whitespace-nowrap px-2 py-2 text-[0.72rem] uppercase tracking-[0.1em] text-ivory/80 transition-colors hover:text-gold-bright data-[status=active]:text-gold";
 
 function ServiceLink({ slug, label, onClick }: { slug: string; label: string; onClick?: () => void }) {
   if (slug === "book-to-film") {
@@ -52,14 +52,14 @@ export function SiteHeader() {
             {MAIN_NAV.map((item) =>
               item.to === "/services" ? (
                 <NavigationMenuItem key={item.to}>
-                  <NavigationMenuTrigger className="h-auto whitespace-nowrap bg-transparent px-2.5 py-2 text-[0.78rem] font-normal uppercase tracking-[0.14em] text-ivory/80 hover:bg-transparent hover:text-gold-bright focus:bg-transparent focus:text-gold-bright data-[state=open]:bg-transparent data-[state=open]:text-gold data-[state=open]:hover:bg-transparent data-[state=open]:focus:bg-transparent">
+                  <NavigationMenuTrigger className="h-auto whitespace-nowrap bg-transparent px-2 py-2 text-[0.72rem] font-normal uppercase tracking-[0.1em] text-ivory/80 hover:bg-transparent hover:text-gold-bright focus:bg-transparent focus:text-gold-bright data-[state=open]:bg-transparent data-[state=open]:text-gold data-[state=open]:hover:bg-transparent data-[state=open]:focus:bg-transparent">
                     Services
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="w-[54rem] bg-ink p-8 text-ivory md:w-[54rem]">
-                    <div className="grid grid-cols-4 gap-8">
+                  <NavigationMenuContent className="w-[64rem] bg-ink p-8 text-ivory md:w-[64rem]">
+                    <div className="grid grid-cols-5 gap-6">
                       {SERVICE_MENU.map((group) => (
                         <div key={group.heading}>
-                          <p className="eyebrow mb-3 text-[0.65rem]">{group.heading}</p>
+                          <Link to="/services/category/$department" params={{ department: group.slug }} className="eyebrow mb-3 block text-[0.62rem] leading-snug hover:text-gold-bright">{group.heading}</Link>
                           {group.items.map((it) => (
                             <ServiceLink key={it.slug} slug={it.slug} label={it.label} />
                           ))}
@@ -85,12 +85,9 @@ export function SiteHeader() {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <div className="hidden items-center gap-3 xl:flex">
-          <Button asChild variant="ivoryOutline" size="sm" className="h-10 px-4">
-            <Link to="/consultation">Book a Consultation</Link>
-          </Button>
-          <Button asChild variant="gold" size="sm" className="h-10 px-5">
-            <Link to="/submit">Submit Your Book</Link>
+        <div className="hidden items-center xl:flex">
+          <Button asChild variant="gold" size="sm" className="h-10 px-4 text-xs uppercase tracking-[0.12em]">
+            <Link to="/submit">Get Your Book Discovered</Link>
           </Button>
         </div>
 
@@ -122,8 +119,10 @@ export function SiteHeader() {
                       <Link to="/services" onClick={close} className="block py-1.5 text-sm text-gold">
                         All services →
                       </Link>
-                      {SERVICE_MENU.flatMap((g): { slug: string; label: string }[] => [...g.items]).map((it) => (
-                        <ServiceLink key={it.slug} slug={it.slug} label={it.label} onClick={close} />
+                      {SERVICE_MENU.map((g) => (
+                        <Link key={g.slug} to="/services/category/$department" params={{ department: g.slug }} onClick={close} className="block py-1.5 text-sm text-ivory/75 hover:text-gold-bright">
+                          {g.heading}
+                        </Link>
                       ))}
                     </div>
                   </details>
@@ -139,12 +138,12 @@ export function SiteHeader() {
                   </Link>
                 ),
               )}
-              <Link to="/faq" onClick={close} className="border-b border-line-dark py-4 font-display text-2xl">
-                FAQ
+              <Link to="/blog" onClick={close} className="border-b border-line-dark py-4 font-display text-2xl">
+                Author Resources
               </Link>
               <div className="mt-8 flex flex-col gap-3 pb-8">
                 <Button asChild variant="gold" size="lg">
-                  <Link to="/submit" onClick={close}>Submit Your Book</Link>
+                  <Link to="/submit" onClick={close}>Get Your Book Discovered</Link>
                 </Button>
                 <Button asChild variant="ivoryOutline" size="lg">
                   <Link to="/consultation" onClick={close}>Book a Consultation</Link>
